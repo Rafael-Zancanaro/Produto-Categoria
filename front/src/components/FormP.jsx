@@ -1,10 +1,11 @@
 import {Button,TextField} from "@material-ui/core";
+import { useState } from "react";
 import Pro from "../model/Prod";
 function FormP({create}) {
     let id=1;
-    let nome;
-    let valor;
-    let desc;
+    let [nome,setnome]=useState("");
+    let [valor,setvalor]=useState ("");
+    let [desc,setdesc]= useState ("");
     
     return (
         <div>
@@ -17,14 +18,17 @@ function FormP({create}) {
                     nome,
                     valor,
                     desc);
-                if (nome  === undefined || nome === "" ||
-                    valor === undefined || valor === ""||
-                    desc  === undefined || desc ==="") {
+                if (nome === "" ||
+                    valor === ""||
+                    desc ==="") {
                     alert("preencha todos os campos!")
                     
                 }
                 else {
                     create(model);
+                    setnome("");
+                    setvalor("");
+                    setdesc("");
                 };
                 }}>
                 <TextField
@@ -32,21 +36,24 @@ function FormP({create}) {
                     margin="normal"
                     id="nome"
                     label="Nome"
-                    onChange={(e) => nome.state = e.target.value}/>
+                    onChange={(e) => setnome( e.target.value)}
+                    value={nome}/>
                 <TextField
                     fullWidth
                     margin="normal"
                     id="valor"
                     label="Valor"
                     type="number"
-                    onChange={(e) => valor = e.target.value}
+                    onChange={(e) => setvalor( e.target.value)}
+                    value={valor}
                 />
                 <TextField
                     fullWidth
                     margin="normal"
                     id="desc"
                     label="Descrição"
-                    onChange={(e) => desc = e.target.value}
+                    onChange={(e) => setdesc( e.target.value)}
+                    value={desc}
                 />
                 <Button type="submit" variant="contained" color="primary">
                     Save
