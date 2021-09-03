@@ -1,23 +1,28 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-function Listap({lista}) {
- 
+import { useState } from 'react';
+
+function Listap({repoProd}) {
+
+  let [ lista, setList] = useState(repoProd.list())
+  repoProd.inscrever(setList);
+
   let columns = [
     { field: 'id', headerName: 'ID', width: 100 },
     {
-      field: 'Nome',
+      field: 'nome',
       headerName: 'Nome',
       width: 150,
       editable: true,
     },
     {
-      field: 'Valor',
+      field: 'valor',
       headerName: 'Valor',
       width: 150,
       editable: true,
     },
     {
-      field: 'Descricao',
+      field: 'desc',
       headerName: 'Descrição',
       width: 150,
       editable: true,

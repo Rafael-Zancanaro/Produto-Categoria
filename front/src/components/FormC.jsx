@@ -1,7 +1,7 @@
 import { Button,TextField } from '@material-ui/core';
 import Desc from '../model/Desc'
 function FormC({create}) {
-    let id;
+    let id=1;
     let nome;
     let desc;
 
@@ -12,19 +12,18 @@ function FormC({create}) {
                 e.preventDefault();
                 let model;
                 model = new Desc(
-                    id,
+                    id++,
                     nome,
                     desc);
-                create(model);
-            }}>
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="id"
-                    label="Id"
-                    type="number"
-                    onChange={(e) => id = e.target.value}
-                />
+                if (nome === undefined || nome === "" ||
+                    desc === undefined || desc === "") {
+                    alert("preencha todos os campos!")
+                }
+                else {
+                    create(model);
+                };
+                
+                }}>
                 <TextField
                     fullWidth
                     margin="normal"
@@ -37,7 +36,7 @@ function FormC({create}) {
                     margin="normal"
                     id="desc"
                     label="Descrição"
-                    onChange={(e) => desc = e.target.value}
+                    onChange = {(e) => desc = e.target.value}
                 />
                 <Button type="submit" variant="contained" color="primary">
                     Save

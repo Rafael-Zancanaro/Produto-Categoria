@@ -1,4 +1,4 @@
-   class DevRepository{
+   class RepositoryP{
     #list;
     #inscritos;
 
@@ -30,4 +30,4 @@
     }
 
 }
-export default DevRepository;
+export default RepositoryP;

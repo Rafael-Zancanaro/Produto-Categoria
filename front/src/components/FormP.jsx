@@ -1,38 +1,38 @@
-import React from "react";
-import {Button,TextField,FormControl,} from "@material-ui/core";
+import {Button,TextField} from "@material-ui/core";
 import Pro from "../model/Prod";
 function FormP({create}) {
-    let id;
+    let id=1;
     let nome;
     let valor;
     let desc;
+    
     return (
         <div>
-            <FormControl onSubmit={(e) => {
+            <form onSubmit={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                create(new Pro(
-                    id,
+                let model;
+                model = new Pro(
+                    id++,
                     nome,
                     valor,
-                    desc
-                ))
-            }}>
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    id="id"
-                    label="Id"
-                    type="number"
-                    onChange={(e) => id = e.target.value}
-                />
+                    desc);
+                if (nome  === undefined || nome === "" ||
+                    valor === undefined || valor === ""||
+                    desc  === undefined || desc ==="") {
+                    alert("preencha todos os campos!")
+                    
+                }
+                else {
+                    create(model);
+                };
+                }}>
                 <TextField
                     fullWidth
                     margin="normal"
                     id="nome"
                     label="Nome"
-                    onChange={(e) => nome = e.target.value}
-                />
+                    onChange={(e) => nome.state = e.target.value}/>
                 <TextField
                     fullWidth
                     margin="normal"
@@ -51,7 +51,7 @@ function FormP({create}) {
                 <Button type="submit" variant="contained" color="primary">
                     Save
                 </Button>
-            </FormControl>
+            </form>
         </div>
 
     );
